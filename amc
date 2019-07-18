@@ -86,10 +86,9 @@ sub MainMenu
                                       '3', 'Server Console',
                                       '4', 'Turn Off Respawn',
                                       '5', 'Turn Respawn On',
-                                      '6', 'Edit server.cfg',
-                                      '7', 'Edit world.cfg',
-                                      '8', 'Run a Backup',
-                                      '9', 'Kill Argentum Age',
+                                      '6', 'Edit run.sh',
+                                      '7', 'Run a Backup',
+                                      '8', 'Kill Argentum Age',
                                       'q', 'Quit AMC' ] );
 }
 
@@ -116,7 +115,7 @@ while (-1)
 	elsif ($menuselection eq "3")
 	{
 		$d->msgbox( text => "To exit the Argentum Age console and return to AMC press CTRL-A CTRL-D" );
-		system("screen -r Lugdunon");
+		system("screen -r ArgentumAge");
 	}
 	elsif ($menuselection eq "4")
 	{
@@ -133,20 +132,15 @@ while (-1)
 	}
 	elsif ($menuselection eq "6")
 	{
-		# Edit server.cfg file
-		system("$FileEditor $ARGENTUMDIR/dat/server.cfg");
+		# Edit run.sh file
+		system("$FileEditor $ARGENTUMDIR/run.sh");
 	}
 	elsif ($menuselection eq "7")
-	{
-		# Edit world.cfg file
-		system("$FileEditor $ARGENTUMDIR/dat/default/world.cfg");
-	}
-	elsif ($menuselection eq "8")
 	{
 		# Run a backup
 		system("$BackupCommand");
 	}
-	elsif ($menuselection eq "9")
+	elsif ($menuselection eq "8")
 	{
 		# Kill Argentum Age server process
 		my $running=`ps ax|grep citadel|grep -v grep`;
