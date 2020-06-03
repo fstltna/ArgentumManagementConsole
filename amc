@@ -9,7 +9,7 @@ use Proc::ProcessTable;
 
 my $FileEditor = "/bin/nano";
 my $InitDName = "/home/argentumowner/bin/argentumage";
-my $ARGENTUMDIR = "/home/argentumowner/argentum-age";
+my $ARGENTUMDIR = "/home/argentumowner/anura";
 my $BackupCommand = "/home/argentumowner/ArgentumBackup/argentumbackup.pl";
 
 ###################################################
