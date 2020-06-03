@@ -8,9 +8,9 @@ use Term::ANSIScreen qw(cls);
 use Proc::ProcessTable;
 
 my $FileEditor = "/bin/nano";
-my $InitDName = "/etc/init.d/argentumage";
-my $ARGENTUMDIR = "/root/anura";
-my $BackupCommand = "/root/ArgentumBackup/argentumbackup.pl";
+my $InitDName = "/home/argentumowner/bin/argentumage";
+my $ARGENTUMDIR = "/home/argentumowner/argentum-age";
+my $BackupCommand = "/home/argentumowner/ArgentumBackup/argentumbackup.pl";
 
 ###################################################
 # No changes below here
@@ -25,7 +25,7 @@ chop($HOST);
 
 my $KILL_COMMAND = "killall argentum";
 
-my $AMC_ver = "1.0";
+my $AMC_ver = "1.1";
 my $ServerStatus = "foo";
 
 if ($ENV{'EDITOR'})
@@ -81,14 +81,12 @@ sub MainMenu
 	}
 
 	$menuselection = $d->menu( title => "Main Menu", text => "Server is $ServerStatus and respawn is $WantRespawn - Select one:",
-                            list => [ '1', 'Start Server',
-                                      '2', 'Stop Server',
-                                      '3', 'Server Console',
-                                      '4', 'Turn Off Respawn',
-                                      '5', 'Turn Respawn On',
-                                      '6', 'Edit run.sh',
-                                      '7', 'Run a Backup',
-                                      '8', 'Kill Argentum Age',
+                            list => [ '1', 'Server Console',
+                                      '2', 'Turn Off Respawn',
+                                      '3', 'Turn Respawn On',
+                                      '4', 'Edit run.sh',
+                                      '5', 'Run a Backup',
+                                      '6', 'Kill Argentum Age',
                                       'q', 'Quit AMC' ] );
 }
 
@@ -100,29 +98,17 @@ while (-1)
 		$d->msgbox( title => $enjoyedtitle, text => "Thanks for using AMC..." );
 		exit 0;
 	}
-	if ($menuselection eq "1")
-	{
-		system("$InitDName start");
-	}
-	elsif ($menuselection eq "2")
-	{
-		if ($d->yesno( text => "Confirm stopping the server", text => "Are you sure you want to shut down the server?" ))
-		{
-			system("$InitDName stop");
-			sleep(5);
-		}
-	}
-	elsif ($menuselection eq "3")
+	elsif ($menuselection eq "1")
 	{
 		$d->msgbox( text => "To exit the Argentum Age console and return to AMC press CTRL-A CTRL-D" );
 		system("screen -r ArgentumAge");
 	}
-	elsif ($menuselection eq "4")
+	elsif ($menuselection eq "2")
 	{
 		# Turn off respawn
 		system("touch $ARGENTUMDIR/nostart");
 	}
-	elsif ($menuselection eq "5")
+	elsif ($menuselection eq "3")
 	{
 		# Turn respawn back on
 		if (-f "$ARGENTUMDIR/nostart")
@@ -130,17 +116,17 @@ while (-1)
 			unlink("$ARGENTUMDIR/nostart");
 		}
 	}
-	elsif ($menuselection eq "6")
+	elsif ($menuselection eq "4")
 	{
 		# Edit run.sh file
 		system("$FileEditor $ARGENTUMDIR/run.sh");
 	}
-	elsif ($menuselection eq "7")
+	elsif ($menuselection eq "5")
 	{
 		# Run a backup
 		system("$BackupCommand");
 	}
-	elsif ($menuselection eq "8")
+	elsif ($menuselection eq "6")
 	{
 		# Kill Argentum Age server process
 		my $running=`ps ax|grep citadel|grep -v grep`;

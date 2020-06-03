@@ -1,8 +1,8 @@
-# Argentum Management Console (1.0)
+# Argentum Management Console (1.1)
 Allows you to manage your Argentum Age server with a text based GUI - 
 Official support sites: [Official Github Repo](https://github.com/fstltna/ArgentumManagementConsole) - [Official Forum](https://argentumage.gameplayer.club/index.php/forum/argentum-age-utilities)
 ---
-Edit "amc" and change the settings at the top if your Argentum server is not in /root/anura.
+Edit "amc" and change the settings at the top if your Argentum server is not in /home/argentumowner/argentum-age/anura.
 
 You will need to run cpan and install these modules:
 
